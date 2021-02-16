@@ -37,9 +37,24 @@ module.exports = {
         }
       }
     },
-    createPost: (req, res) => {
-      //code here
+    
+    
+    
+    createPost: async (req, res) => {
+      const {id} = req.session.user
+      const {title, img, content} = req.body
+      const date = new Date
+      const db = req.app.get('db')
+      if(!id){
+        return res.status(403).send(`User not found.`)
+      }
+      const createPost = db.post.create_post([id, title, img, content, date])
+      const post = createPost[0]
+      return res.status(200).send(post)
     },
+    
+    
+    
     readPost: (req, res) => {
       req.app.get('db').post.read_post(req.params.id)
         .then(post => post[0] ? res.status(200).send(post[0]) : res.status(200).send({}))
