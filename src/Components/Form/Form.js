@@ -16,7 +16,7 @@ class Form extends Component {
 
   submit() {
     axios.post('/api/post', this.state)
-      .then((res)=> res.status(200).send(this.props.history.push(`/dash`)))
+      .then((res)=> this.props.history.push(`/dash`))
       .catch((err) => console.log(err))
   }
   
