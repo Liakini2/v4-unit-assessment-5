@@ -63,10 +63,10 @@ class Dash extends Component {
 
   render() {
     let {loading, search, posts, myPosts, oldestFirst} = this.state
-
+    console.log(posts)
     let mappedPosts = posts.map(post => {
       return <div className='content-box dash-post-box' key={post.post_id}>
-          <Link to={`/post/${post.id}`}>
+          <Link to={`/post/${post.post_id}`}>
             <h3>{post.title}</h3>
           </Link>
           {
